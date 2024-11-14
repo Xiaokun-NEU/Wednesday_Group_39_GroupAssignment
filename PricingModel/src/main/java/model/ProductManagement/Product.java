@@ -15,9 +15,22 @@ import model.OrderManagement.OrderItem;
  */
 public class Product {
     private String name;
+
+    public String getName() {
+        return name;
+    }
     private int floorPrice;
     private int ceilingPrice;
     private int targetPrice;
+    private int availability;
+
+    public int getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(int availability) {
+        this.availability = availability;
+    }
     ArrayList<OrderItem> orderitems;
         public Product( int fp, int cp, int tp) {
 
