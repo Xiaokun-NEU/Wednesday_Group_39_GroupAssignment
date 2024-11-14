@@ -6,10 +6,10 @@ package ui;
 
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
-import model.ProductManagement.Product;
 import model.Supplier.Supplier;
 import model.Supplier.SupplierDirectory;
 import model.ProductManagement.Product;
+
 
 /**
  *
