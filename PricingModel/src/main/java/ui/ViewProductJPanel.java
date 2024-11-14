@@ -157,5 +157,6 @@ public class ViewProductJPanel extends javax.swing.JPanel {
                 });
             }
         }
+   
     }
 }
