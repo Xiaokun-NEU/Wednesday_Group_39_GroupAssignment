@@ -55,7 +55,7 @@
                           <Component id="btnSimulation" alignment="0" pref="170" max="32767" attributes="0"/>
                           <Component id="btnReport" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="66" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -80,6 +80,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="View Product"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnPrice">
               <Properties>

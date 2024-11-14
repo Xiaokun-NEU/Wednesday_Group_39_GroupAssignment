@@ -21,6 +21,6 @@ public class PricingModel {
     // TODO code application logic here
     Business business = ConfigureABusiness.initialize();
   }
-
+  
 
 }
