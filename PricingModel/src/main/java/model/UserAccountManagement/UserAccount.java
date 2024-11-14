@@ -7,6 +7,7 @@ package model.UserAccountManagement;
 
 import model.Personnel.Profile;
 
+
 /**
  *
  * @author kal bugrara
