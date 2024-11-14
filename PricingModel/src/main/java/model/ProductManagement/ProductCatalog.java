@@ -25,6 +25,11 @@ public class ProductCatalog {
         type = "unknown";
         products = new ArrayList();
     }
+    
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+    
     public Product newProduct(int fp, int cp, int tp) {
         Product p = new Product(fp, cp, tp);
         products.add(p);

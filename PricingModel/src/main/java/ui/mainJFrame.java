@@ -4,6 +4,9 @@
  */
 package ui;
 
+import java.awt.CardLayout;
+import model.Supplier.SupplierDirectory;
+
 /**
  *
  * @author yangj
@@ -13,8 +16,12 @@ public class mainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form mainJFrame
      */
+    SupplierDirectory supplierDirectory;
+    
     public mainJFrame() {
         initComponents();
+        supplierDirectory = new SupplierDirectory();
+        workPanel.setLayout(new CardLayout());
     }
 
     /**
@@ -37,10 +44,25 @@ public class mainJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnView.setText("View Product");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         btnPrice.setText("Adjust Price");
+        btnPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPriceActionPerformed(evt);
+            }
+        });
 
         btnSimulation.setText("Run Simulation");
+        btnSimulation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimulationActionPerformed(evt);
+            }
+        });
 
         btnReport.setText("Report");
 
@@ -55,7 +77,7 @@ public class mainJFrame extends javax.swing.JFrame {
                     .addComponent(btnPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSimulation, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                     .addComponent(btnReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,6 +121,25 @@ public class mainJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+        ViewProductJPanel panel = new ViewProductJPanel(workPanel, supplierDirectory);
+        workPanel.add(" ViewProductJPanel", panel);
+
+        CardLayout layout = (CardLayout) workPanel.getLayout();
+        layout.next(workPanel);
+    }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPriceActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnPriceActionPerformed
+
+    private void btnSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimulationActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnSimulationActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,8 +5,8 @@
 package ui;
 
 import javax.swing.JComboBox;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import model.ProductManagement.Product;
 import model.Supplier.Supplier;
 import model.Supplier.SupplierDirectory;
 import model.ProductManagement.Product;
@@ -20,26 +20,43 @@ public class ViewProductJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewProductJPanel
      */
-    private SupplierDirectory supplierDirectory;
-    private JComboBox<Supplier> cmbSuppliers;
+    private final SupplierDirectory supplierDirectory;
     
-    public ViewProductJPanel(SupplierDirectory supplierDirectory) {
+    public ViewProductJPanel(JPanel workPanel, SupplierDirectory supplierDirectory) {
         this.supplierDirectory = supplierDirectory;
         initComponents();
         populateSupplierCombo();
     }
 
     private void populateSupplierCombo() {
-        cmbSuppliers.removeAllItems();
+    cmbSupplier.removeAllItems();
+
+        Supplier supplier1 = new Supplier("Supplier1");
+        supplier1.getProductCatalog().addProduct(new Product("Product1", 100, 50, 70));
+
+        Supplier supplier2 = new Supplier("Supplier2");
+        supplier2.getProductCatalog().addProduct(new Product("Product2", 150, 60, 90));
+
+        Supplier supplier3 = new Supplier("Supplier3");
+        supplier3.getProductCatalog().addProduct(new Product("Product3", 200, 80, 120));
+
+        Supplier supplier4 = new Supplier("Supplier4");
+        supplier4.getProductCatalog().addProduct(new Product("Product4", 250, 100, 150));
+
+        Supplier supplier5 = new Supplier("Supplier5");
+        supplier5.getProductCatalog().addProduct(new Product("Product5", 300, 120, 180));
+
+        supplierDirectory.getSuplierList().add(supplier1);
+        supplierDirectory.getSuplierList().add(supplier2);
+        supplierDirectory.getSuplierList().add(supplier3);
+        supplierDirectory.getSuplierList().add(supplier4);
+        supplierDirectory.getSuplierList().add(supplier5);
+
         for (Supplier supplier : supplierDirectory.getSuplierList()) {
-            cmbSuppliers.addItem(supplier);
+            cmbSupplier.addItem(supplier);
         }
     }
-    
-    private void cmbSuppliersActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        Supplier selectedSupplier = (Supplier) cmbSuppliers.getSelectedItem();
-        populateProductTable(selectedSupplier);
-    }         
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,7 +149,9 @@ public class ViewProductJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cmbSupplierActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-        // TODO add your handling code here:     
+        // TODO add your handling code here:   
+        Supplier selectedSupplier = (Supplier) cmbSupplier.getSelectedItem();
+        populateProductTable(selectedSupplier);
     }//GEN-LAST:event_btnViewActionPerformed
 
 
