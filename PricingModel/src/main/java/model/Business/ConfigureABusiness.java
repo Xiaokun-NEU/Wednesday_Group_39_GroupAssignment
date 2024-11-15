@@ -34,7 +34,8 @@ public class ConfigureABusiness {
 
   public static Business initialize() {
     Business business = new Business("Xerox");
-
+    String name = "John";
+    System.out.println("Hello " + name);
     return business;
   }
 }

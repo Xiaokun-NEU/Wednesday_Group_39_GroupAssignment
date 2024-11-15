@@ -123,7 +123,7 @@ public class mainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code her
         ViewProductJPanel panel = new ViewProductJPanel(workPanel, supplierDirectory);
         workPanel.add(" ViewProductJPanel", panel);
 
