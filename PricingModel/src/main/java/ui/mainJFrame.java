@@ -65,6 +65,11 @@ public class mainJFrame extends javax.swing.JFrame {
         });
 
         btnReport.setText("Report");
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
@@ -133,13 +138,30 @@ public class mainJFrame extends javax.swing.JFrame {
 
     private void btnPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPriceActionPerformed
         // TODO add your handling code here:
-        
+        priceJPanel panel = new priceJPanel(workPanel, supplierDirectory);
+        workPanel.add("priceJPanel", panel);
+
+        CardLayout layout = (CardLayout) workPanel.getLayout();
+        layout.next(workPanel);
     }//GEN-LAST:event_btnPriceActionPerformed
 
     private void btnSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimulationActionPerformed
         // TODO add your handling code here:
-        
+        simulationJPanel panel = new simulationJPanel(workPanel, supplierDirectory);
+        workPanel.add("simulationJPanel", panel);
+
+        CardLayout layout = (CardLayout) workPanel.getLayout();
+        layout.next(workPanel);
     }//GEN-LAST:event_btnSimulationActionPerformed
+
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        // TODO add your handling code here:
+        reportJPanel panel = new reportJPanel(workPanel, supplierDirectory);
+        workPanel.add("reportJPanel", panel);
+
+        CardLayout layout = (CardLayout) workPanel.getLayout();
+        layout.next(workPanel);
+    }//GEN-LAST:event_btnReportActionPerformed
 
     /**
      * @param args the command line arguments

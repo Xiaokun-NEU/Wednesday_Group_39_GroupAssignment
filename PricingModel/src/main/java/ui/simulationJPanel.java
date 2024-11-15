@@ -4,6 +4,9 @@
  */
 package ui;
 
+import javax.swing.JPanel;
+import model.Supplier.SupplierDirectory;
+
 /**
  *
  * @author yangj
@@ -13,7 +16,10 @@ public class simulationJPanel extends javax.swing.JPanel {
     /**
      * Creates new form simulationJPanel
      */
-    public simulationJPanel() {
+    private final SupplierDirectory supplierDirectory;
+    
+    public simulationJPanel(JPanel workPanel, SupplierDirectory supplierDirectory) {
+        this.supplierDirectory = supplierDirectory;
         initComponents();
     }
 

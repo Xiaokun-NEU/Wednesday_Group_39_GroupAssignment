@@ -4,6 +4,12 @@
  */
 package ui;
 
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import model.ProductManagement.Product;
+import model.Supplier.Supplier;
+import model.Supplier.SupplierDirectory;
+
 /**
  *
  * @author yangj
@@ -13,8 +19,12 @@ public class priceJPanel extends javax.swing.JPanel {
     /**
      * Creates new form priceJPanel
      */
-    public priceJPanel() {
+    private final SupplierDirectory supplierDirectory;
+    
+    public priceJPanel(JPanel workPanel, SupplierDirectory supplierDirectory) {       
+        this.supplierDirectory = supplierDirectory;
         initComponents();
+        populateSupplierCombo();
     }
 
     /**
@@ -113,12 +123,44 @@ public class priceJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void populateSupplierCombo() {
+        cmbSupplier.removeAllItems();
+
+        if (supplierDirectory.getSuplierList().isEmpty()) {
+        Supplier supplier1 = new Supplier("Supplier1");
+        supplier1.getProductCatalog().addProduct(new Product("Product1", 100, 50, 70));
+
+        Supplier supplier2 = new Supplier("Supplier2");
+        supplier2.getProductCatalog().addProduct(new Product("Product2", 150, 60, 90));
+
+        Supplier supplier3 = new Supplier("Supplier3");
+        supplier3.getProductCatalog().addProduct(new Product("Product3", 200, 80, 120));
+
+        Supplier supplier4 = new Supplier("Supplier4");
+        supplier4.getProductCatalog().addProduct(new Product("Product4", 250, 100, 150));
+
+        Supplier supplier5 = new Supplier("Supplier5");
+        supplier5.getProductCatalog().addProduct(new Product("Product5", 300, 120, 180));
+
+        supplierDirectory.getSuplierList().add(supplier1);
+        supplierDirectory.getSuplierList().add(supplier2);
+        supplierDirectory.getSuplierList().add(supplier3);
+        supplierDirectory.getSuplierList().add(supplier4);
+        supplierDirectory.getSuplierList().add(supplier5);
+        }
+
+        for (Supplier supplier : supplierDirectory.getSuplierList()) {
+            cmbSupplier.addItem(supplier);
+        }
+    }
     private void cmbSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSupplierActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbSupplierActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
+        Supplier selectedSupplier = (Supplier) cmbSupplier.getSelectedItem();
+        populateProductTable(selectedSupplier);
     }//GEN-LAST:event_btnViewActionPerformed
 
 
@@ -131,4 +173,20 @@ public class priceJPanel extends javax.swing.JPanel {
     private javax.swing.JTable tblPrice;
     private javax.swing.JTextField txtPrice;
     // End of variables declaration//GEN-END:variables
+
+
+    private void populateProductTable(Supplier supplier) {
+        DefaultTableModel model = (DefaultTableModel) tblPrice.getModel();
+        model.setRowCount(0); 
+
+        if (supplier != null && supplier.getProductCatalog() != null) {
+            for (Product product : supplier.getProductCatalog().getProductList()) { 
+                model.addRow(new Object[]{      
+                    product.getName(),
+                    product.getAvailability(),
+                    product.getFloorPrice()
+                });
+            }
+        }
+    }
 }

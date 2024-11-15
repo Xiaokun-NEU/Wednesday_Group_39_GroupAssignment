@@ -4,6 +4,10 @@
  */
 package ui;
 
+import javax.swing.JPanel;
+import model.Supplier.SupplierDirectory;
+
+
 /**
  *
  * @author xiaokunchen
@@ -13,7 +17,10 @@ public class reportJPanel extends javax.swing.JPanel {
     /**
      * Creates new form reportJPanel
      */
-    public reportJPanel() {
+    private final SupplierDirectory supplierDirectory;
+    
+    public reportJPanel(JPanel workPanel, SupplierDirectory supplierDirectory) {
+        this.supplierDirectory = supplierDirectory;
         initComponents();
     }
 
