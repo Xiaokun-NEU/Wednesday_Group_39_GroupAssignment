@@ -8,6 +8,7 @@ package model.ProductManagement;
 import java.util.ArrayList;
 
 import model.OrderManagement.OrderItem;
+import model.Supplier.Supplier;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Product {
     private int ceilingPrice;
     private int targetPrice;
     private int availability;
+    private Supplier supplier;
 
     public int getAvailability() {
         return availability;
@@ -101,6 +103,15 @@ public class Product {
     public void setName(String n){
         name = n;
     }
+    
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+    
     @Override
     public String toString(){
         return name;

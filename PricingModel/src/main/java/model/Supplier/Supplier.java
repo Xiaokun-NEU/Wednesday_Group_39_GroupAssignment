@@ -6,6 +6,8 @@
 package model.Supplier;
 
 import java.util.ArrayList;
+import java.util.List;
+import model.ProductManagement.Product;
 
 import model.ProductManagement.ProductCatalog;
 import model.ProductManagement.ProductSummary;
@@ -20,6 +22,7 @@ public class Supplier {
     String name;
     ProductCatalog productcatalog;
     ProductsReport productsreport;
+    private List<Product> products;
 
     public Supplier(String n) {
         name = n;
@@ -52,6 +55,15 @@ public class Supplier {
     //add supplier product ..
 
     //update supplier product ...
+    public void addProduct(Product product) {
+        products.add(product);
+        product.setSupplier(this); // Set the supplier for the product
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+    
     @Override
     public String toString() {
         return name;
