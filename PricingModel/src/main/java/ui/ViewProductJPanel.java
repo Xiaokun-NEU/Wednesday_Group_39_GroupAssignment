@@ -29,8 +29,9 @@ public class ViewProductJPanel extends javax.swing.JPanel {
     }
 
     private void populateSupplierCombo() {
-    cmbSupplier.removeAllItems();
+        cmbSupplier.removeAllItems();
 
+        if (supplierDirectory.getSuplierList().isEmpty()) {
         Supplier supplier1 = new Supplier("Supplier1");
         supplier1.getProductCatalog().addProduct(new Product("Product1", 100, 50, 70));
 
@@ -51,12 +52,12 @@ public class ViewProductJPanel extends javax.swing.JPanel {
         supplierDirectory.getSuplierList().add(supplier3);
         supplierDirectory.getSuplierList().add(supplier4);
         supplierDirectory.getSuplierList().add(supplier5);
+        }
 
         for (Supplier supplier : supplierDirectory.getSuplierList()) {
             cmbSupplier.addItem(supplier);
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
