@@ -20,6 +20,9 @@ public class mainJFrame extends javax.swing.JFrame {
     
     public mainJFrame() {
         initComponents();
+        spList.initializeData();
+
+        workPanel.setLayout(new CardLayout());
         supplierDirectory = new SupplierDirectory();
         workPanel.setLayout(new CardLayout());
     }
@@ -129,16 +132,15 @@ public class mainJFrame extends javax.swing.JFrame {
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code her
-        ViewProductJPanel panel = new ViewProductJPanel(workPanel, supplierDirectory);
-        workPanel.add(" ViewProductJPanel", panel);
-
+        ViewProductJPanel panel = new ViewProductJPanel(workPanel);
+        workPanel.add("ViewProductJPanel", panel);
         CardLayout layout = (CardLayout) workPanel.getLayout();
-        layout.next(workPanel);
+        layout.show(workPanel, "ViewProductJPanel");
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPriceActionPerformed
         // TODO add your handling code here:
-        priceJPanel panel = new priceJPanel(workPanel, supplierDirectory);
+        priceJPanel panel = new priceJPanel(workPanel);
         workPanel.add("priceJPanel", panel);
 
         CardLayout layout = (CardLayout) workPanel.getLayout();
@@ -147,7 +149,7 @@ public class mainJFrame extends javax.swing.JFrame {
 
     private void btnSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimulationActionPerformed
         // TODO add your handling code here:
-        simulationJPanel panel = new simulationJPanel(workPanel, supplierDirectory);
+        simulationJPanel panel = new simulationJPanel(workPanel);
         workPanel.add("simulationJPanel", panel);
 
         CardLayout layout = (CardLayout) workPanel.getLayout();

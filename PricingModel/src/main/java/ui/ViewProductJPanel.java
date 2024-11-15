@@ -4,12 +4,12 @@
  */
 package ui;
 
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.Supplier.Supplier;
 import model.Supplier.SupplierDirectory;
 import model.ProductManagement.Product;
+import java.util.List;
 
 /**
  *
@@ -22,8 +22,8 @@ public class ViewProductJPanel extends javax.swing.JPanel {
      */
     private final SupplierDirectory supplierDirectory;
     
-    public ViewProductJPanel(JPanel workPanel, SupplierDirectory supplierDirectory) {
-        this.supplierDirectory = supplierDirectory;
+    public ViewProductJPanel(JPanel workPanel) {
+        this.supplierDirectory = spList.getSupplierDirectory();
         initComponents();
         populateSupplierCombo();
     }
@@ -31,30 +31,7 @@ public class ViewProductJPanel extends javax.swing.JPanel {
     private void populateSupplierCombo() {
         cmbSupplier.removeAllItems();
 
-        if (supplierDirectory.getSuplierList().isEmpty()) {
-        Supplier supplier1 = new Supplier("Supplier1");
-        supplier1.getProductCatalog().addProduct(new Product("Product1", 100, 50, 70));
-
-        Supplier supplier2 = new Supplier("Supplier2");
-        supplier2.getProductCatalog().addProduct(new Product("Product2", 150, 60, 90));
-
-        Supplier supplier3 = new Supplier("Supplier3");
-        supplier3.getProductCatalog().addProduct(new Product("Product3", 200, 80, 120));
-
-        Supplier supplier4 = new Supplier("Supplier4");
-        supplier4.getProductCatalog().addProduct(new Product("Product4", 250, 100, 150));
-
-        Supplier supplier5 = new Supplier("Supplier5");
-        supplier5.getProductCatalog().addProduct(new Product("Product5", 300, 120, 180));
-
-        supplierDirectory.getSuplierList().add(supplier1);
-        supplierDirectory.getSuplierList().add(supplier2);
-        supplierDirectory.getSuplierList().add(supplier3);
-        supplierDirectory.getSuplierList().add(supplier4);
-        supplierDirectory.getSuplierList().add(supplier5);
-        }
-
-        for (Supplier supplier : supplierDirectory.getSuplierList()) {
+        for (Supplier supplier : supplierDirectory.getSupplierList()) {
             cmbSupplier.addItem(supplier);
         }
     }
@@ -98,7 +75,7 @@ public class ViewProductJPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Product", "Availability", "Price"
+                "Product", "Floor Price", "Target Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -166,17 +143,18 @@ public class ViewProductJPanel extends javax.swing.JPanel {
 
     private void populateProductTable(Supplier supplier) {
         DefaultTableModel model = (DefaultTableModel) tblProduct.getModel();
-        model.setRowCount(0); 
+        model.setRowCount(0);
 
         if (supplier != null && supplier.getProductCatalog() != null) {
-            for (Product product : supplier.getProductCatalog().getProductList()) { 
-                model.addRow(new Object[]{      
+            List<Product> products = supplier.getProductCatalog().getProductList();
+
+            for (Product product : products) {
+                model.addRow(new Object[]{
                     product.getName(),
-                    product.getAvailability(),
-                    product.getFloorPrice()
+                    product.getFloorPrice(),
+                    product.getTargetPrice()
                 });
             }
         }
-   
     }
 }

@@ -21,8 +21,8 @@ public class priceJPanel extends javax.swing.JPanel {
      */
     private final SupplierDirectory supplierDirectory;
     
-    public priceJPanel(JPanel workPanel, SupplierDirectory supplierDirectory) {       
-        this.supplierDirectory = supplierDirectory;
+    public priceJPanel(JPanel workPanel) {       
+        this.supplierDirectory = spList.getSupplierDirectory();
         initComponents();
         populateSupplierCombo();
     }
@@ -43,6 +43,7 @@ public class priceJPanel extends javax.swing.JPanel {
         tblPrice = new javax.swing.JTable();
         lblPrice = new javax.swing.JLabel();
         txtPrice = new javax.swing.JTextField();
+        btnSave = new javax.swing.JButton();
 
         cmbSupplier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +85,8 @@ public class priceJPanel extends javax.swing.JPanel {
 
         lblPrice.setText("Target Price:");
 
+        btnSave.setText("Save");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,7 +97,9 @@ public class priceJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSave))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblSupplier)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -118,7 +123,8 @@ public class priceJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSave))
                 .addContainerGap(87, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -126,30 +132,7 @@ public class priceJPanel extends javax.swing.JPanel {
     private void populateSupplierCombo() {
         cmbSupplier.removeAllItems();
 
-        if (supplierDirectory.getSuplierList().isEmpty()) {
-        Supplier supplier1 = new Supplier("Supplier1");
-        supplier1.getProductCatalog().addProduct(new Product("Product1", 100, 50, 70));
-
-        Supplier supplier2 = new Supplier("Supplier2");
-        supplier2.getProductCatalog().addProduct(new Product("Product2", 150, 60, 90));
-
-        Supplier supplier3 = new Supplier("Supplier3");
-        supplier3.getProductCatalog().addProduct(new Product("Product3", 200, 80, 120));
-
-        Supplier supplier4 = new Supplier("Supplier4");
-        supplier4.getProductCatalog().addProduct(new Product("Product4", 250, 100, 150));
-
-        Supplier supplier5 = new Supplier("Supplier5");
-        supplier5.getProductCatalog().addProduct(new Product("Product5", 300, 120, 180));
-
-        supplierDirectory.getSuplierList().add(supplier1);
-        supplierDirectory.getSuplierList().add(supplier2);
-        supplierDirectory.getSuplierList().add(supplier3);
-        supplierDirectory.getSuplierList().add(supplier4);
-        supplierDirectory.getSuplierList().add(supplier5);
-        }
-
-        for (Supplier supplier : supplierDirectory.getSuplierList()) {
+        for (Supplier supplier : supplierDirectory.getSupplierList()) {
             cmbSupplier.addItem(supplier);
         }
     }
@@ -165,6 +148,7 @@ public class priceJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSave;
     private javax.swing.JButton btnView;
     private javax.swing.JComboBox<Object> cmbSupplier;
     private javax.swing.JScrollPane jScrollPane1;

@@ -5,6 +5,8 @@
 package ui;
 
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import model.Supplier.Supplier;
 import model.Supplier.SupplierDirectory;
 
 /**
@@ -18,11 +20,11 @@ public class simulationJPanel extends javax.swing.JPanel {
      */
     private final SupplierDirectory supplierDirectory;
     
-    public simulationJPanel(JPanel workPanel, SupplierDirectory supplierDirectory) {
-        this.supplierDirectory = supplierDirectory;
+    public simulationJPanel(JPanel workPanel) {
+        spList.initializeData();
+        this.supplierDirectory = spList.getSupplierDirectory();
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,6 +36,7 @@ public class simulationJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSimulation = new javax.swing.JTable();
+        btnSimulation = new javax.swing.JButton();
 
         tblSimulation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -56,12 +59,21 @@ public class simulationJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblSimulation);
 
+        btnSimulation.setText("Simulation");
+        btnSimulation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimulationActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSimulation))
                 .addGap(0, 21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -69,12 +81,24 @@ public class simulationJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnSimulation)
+                .addContainerGap(177, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimulationActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) tblSimulation.getModel();
+        model.setRowCount(0);
+        for (Supplier supplier : supplierDirectory.getSupplierList()) {
+            model.addRow(new Object[]{supplier.getName(), 0, 0, 0});
+        }
+    }//GEN-LAST:event_btnSimulationActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSimulation;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblSimulation;
     // End of variables declaration//GEN-END:variables
