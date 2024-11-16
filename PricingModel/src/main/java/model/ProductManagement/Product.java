@@ -20,8 +20,8 @@ public class Product {
     public String getName() {
         return name;
     }
-    private double floorPrice;
-    private double ceilingPrice;
+    private double fixPrice;
+    private double costPrice;
     private double targetPrice;
     private int availability;
     private Supplier supplier;
@@ -36,21 +36,21 @@ public class Product {
     ArrayList<OrderItem> orderitems;
         public Product( int fp, int cp, int tp) {
 
-        floorPrice = fp;
-        ceilingPrice = cp;
+        fixPrice = fp;
+        costPrice = cp;
         targetPrice = tp;
         orderitems = new ArrayList();
     }
     public Product(String n, int fp, int cp, int tp) {
         name = n;
-        floorPrice = fp;
-        ceilingPrice = cp;
+        fixPrice = fp;
+        costPrice = cp;
         targetPrice = tp;
         orderitems = new ArrayList();
     }
         public Product updateProduct(int fp, int cp, int tp) {
-        floorPrice = fp;
-        ceilingPrice = cp;
+        fixPrice = fp;
+        costPrice = cp;
         targetPrice = tp;
         return this; //returns itself
     }
@@ -112,14 +112,14 @@ public class Product {
         return supplier;
     }
     
-    public void setFloorPrice(double floorPrice) {
-        this.floorPrice = floorPrice;
+    public void setFixPrice(double fixPrice) {
+        this.fixPrice = fixPrice;
     }
-    public double getFloorPrice(){
-        return floorPrice;
+    public double getFixPrice(){
+        return fixPrice;
     }
-    public double getCeilingPrice(){
-        return ceilingPrice;
+    public double getCostPrice(){
+        return costPrice;
     }
 
     public void setTargetPrice(double targetPrice) {

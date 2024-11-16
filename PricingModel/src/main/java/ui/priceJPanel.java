@@ -71,7 +71,7 @@ public class priceJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Product", "Sales", "Purchase Price", "Target Price"
+                "Product", "Sales", "Cost Price", "Target Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -205,7 +205,8 @@ public class priceJPanel extends javax.swing.JPanel {
                 model.addRow(new Object[]{      
                     product.getName(),
                     product.getAvailability(),
-                    product.getFloorPrice()
+                    product.getCostPrice(),
+                    product.getTargetPrice()    
                 });
             }
         }
