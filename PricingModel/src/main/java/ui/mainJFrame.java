@@ -18,6 +18,7 @@ public class mainJFrame extends javax.swing.JFrame {
      */
     SupplierDirectory supplierDirectory;
     
+    
     public mainJFrame() {
         initComponents();
         spList.initializeData();
