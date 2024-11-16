@@ -26,6 +26,7 @@ public class Product {
     private int availability;
     private Supplier supplier;
     private double revenue;
+    private int quantity;
 
     public double getRevenue() {
         return revenue;
@@ -44,17 +45,18 @@ public class Product {
     }
     ArrayList<OrderItem> orderitems;
         public Product( int fp, int cp, int tp) {
-
+            
         fixedPrice = fp;
         costPrice = cp;
         targetPrice = tp;
         orderitems = new ArrayList();
     }
-    public Product(String n, int fp, int cp, int tp) {
+    public Product(String n, int fp, int cp, int tp, int qt) {
         name = n;
         fixedPrice = fp;
         costPrice = cp;
         targetPrice = tp;
+        quantity = qt;
         orderitems = new ArrayList();
     }
         public Product updateProduct(int fp, int cp, int tp) {
