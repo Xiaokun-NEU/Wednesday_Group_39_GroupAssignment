@@ -146,14 +146,19 @@ public class reportJPanel extends javax.swing.JPanel {
         }
 
         if (selectedSupplier != null) {
-            for (Product product : productCatalog.getProductList()) { 
+            int supplierIndex = supplierDirectory.getSupplierList().indexOf(selectedSupplier);
+            int startIndex = supplierIndex * 10;
+            int endIndex = Math.min(startIndex + 10, productCatalog.getProductList().size()); 
+
+            for (int i = startIndex; i < endIndex; i++) {
+                Product product = productCatalog.getProductList().get(i);
                 model.addRow(new Object[]{
                     product.getName(),
                     product.getRevenue(),      
-                    product.getTargetPriceBefore(),
-                    product.getTargetPriceAfter(),
-                    product.getSalesBelowTarget(),
-                    product.getSalesAboveTarget()
+                    product.getAvailability(),
+                    product.getTargetPrice(),
+                    product.getCostPrice(),
+                    product.getFixedPrice()
                 });
             }
         }
