@@ -56,17 +56,17 @@ public class reportJPanel extends javax.swing.JPanel {
 
         tblReport.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Product Name", "Revenue", "Sales", "Target Price", "Caost Price", "Fixed Price"
+                "Product Name", "Revenue", "Price before ", "Price after", "Frequency of sales "
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
