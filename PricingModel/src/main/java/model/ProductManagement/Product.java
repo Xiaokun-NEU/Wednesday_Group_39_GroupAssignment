@@ -20,11 +20,20 @@ public class Product {
     public String getName() {
         return name;
     }
-    private double fixPrice;
+    private double fixedPrice;
     private double costPrice;
     private double targetPrice;
     private int availability;
     private Supplier supplier;
+    private double revenue;
+
+    public double getRevenue() {
+        return revenue;
+    }
+
+    public void setRevenue(double revenue) {
+        this.revenue = revenue;
+    }
 
     public int getAvailability() {
         return availability;
@@ -36,20 +45,20 @@ public class Product {
     ArrayList<OrderItem> orderitems;
         public Product( int fp, int cp, int tp) {
 
-        fixPrice = fp;
+        fixedPrice = fp;
         costPrice = cp;
         targetPrice = tp;
         orderitems = new ArrayList();
     }
     public Product(String n, int fp, int cp, int tp) {
         name = n;
-        fixPrice = fp;
+        fixedPrice = fp;
         costPrice = cp;
         targetPrice = tp;
         orderitems = new ArrayList();
     }
         public Product updateProduct(int fp, int cp, int tp) {
-        fixPrice = fp;
+        fixedPrice = fp;
         costPrice = cp;
         targetPrice = tp;
         return this; //returns itself
@@ -112,11 +121,11 @@ public class Product {
         return supplier;
     }
     
-    public void setFixPrice(double fixPrice) {
-        this.fixPrice = fixPrice;
+    public void setFixedPrice(double fixPrice) {
+        this.fixedPrice = fixPrice;
     }
-    public double getFixPrice(){
-        return fixPrice;
+    public double getFixedPrice(){
+        return fixedPrice;
     }
     public double getCostPrice(){
         return costPrice;
