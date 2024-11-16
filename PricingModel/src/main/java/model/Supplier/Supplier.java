@@ -22,6 +22,33 @@ public class Supplier {
     String name;
     ProductCatalog productcatalog;
     ProductsReport productsreport;
+
+    public int getSales() {
+        return sales;
+    }
+
+    public void setSales(int sales) {
+        this.sales = sales;
+    }
+
+    public double getGrossProfit() {
+        return grossProfit;
+    }
+
+    public void setGrossProfit(double grossProfit) {
+        this.grossProfit = grossProfit;
+    }
+
+    public double getTotalRevenue() {
+        return totalRevenue;
+    }
+
+    public void setTotalRevenue(double totalRevenue) {
+        this.totalRevenue = totalRevenue;
+    }
+    private int sales;
+    private double grossProfit;
+    private double totalRevenue;
     private List<Product> products;
 
     public Supplier(String n) {

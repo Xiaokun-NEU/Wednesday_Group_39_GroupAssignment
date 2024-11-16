@@ -91,9 +91,14 @@ public class simulationJPanel extends javax.swing.JPanel {
     private void btnSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimulationActionPerformed
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) tblSimulation.getModel();
-        model.setRowCount(0);
+        model.setRowCount(0); 
+
         for (Supplier supplier : supplierDirectory.getSupplierList()) {
-            model.addRow(new Object[]{supplier.getName(), 0, 0, 0});
+            int sales = supplier.getSales();
+            double grossProfit = supplier.getGrossProfit();
+            double revenue = supplier.getTotalRevenue();
+
+            model.addRow(new Object[]{supplier.getName(), sales, grossProfit, revenue});
         }
     }//GEN-LAST:event_btnSimulationActionPerformed
 
