@@ -158,7 +158,7 @@ public class mainJFrame extends javax.swing.JFrame {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:
-        reportJPanel panel = new reportJPanel(workPanel, supplierDirectory);
+        reportJPanel panel = new reportJPanel(workPanel);
         workPanel.add("reportJPanel", panel);
 
         CardLayout layout = (CardLayout) workPanel.getLayout();

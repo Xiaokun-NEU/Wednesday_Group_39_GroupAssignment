@@ -15,7 +15,7 @@ public class ProductSummary {
     Product subjectproduct;
     int numberofsalesabovetarget;
     int numberofsalesbelowtarget;
-    int productpriceperformance; //total profit above target --could be negative too
+    double productpriceperformance; //total profit above target --could be negative too
     int acutalsalesvolume;
     int rank; // will be done later
     
@@ -35,7 +35,7 @@ public class ProductSummary {
     public int getNumberAboveTarget(){
         return numberofsalesabovetarget;
     }
-    public int getProductPricePerformance(){
+    public double getProductPricePerformance(){
         return productpriceperformance;
     }
     public int getNumberBelowTarget(){

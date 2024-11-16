@@ -4,6 +4,7 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.ProductManagement.Product;
@@ -86,6 +87,11 @@ public class priceJPanel extends javax.swing.JPanel {
         lblPrice.setText("Target Price:");
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -145,6 +151,36 @@ public class priceJPanel extends javax.swing.JPanel {
         Supplier selectedSupplier = (Supplier) cmbSupplier.getSelectedItem();
         populateProductTable(selectedSupplier);
     }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tblPrice.getSelectedRow();
+            if (selectedRow < 0) {
+                JOptionPane.showMessageDialog(this, "Please select a product to update the target price.");
+                
+                return;
+            }
+
+        try {
+        
+            double targetPrice = Double.parseDouble(txtPrice.getText());
+
+            Supplier selectedSupplier = (Supplier) cmbSupplier.getSelectedItem();
+            Product selectedProduct = selectedSupplier.getProductCatalog().getProductList().get(selectedRow);
+
+            selectedProduct.setTargetPrice(targetPrice);
+
+            populateProductTable(selectedSupplier);
+
+            txtPrice.setText("");
+        
+            JOptionPane.showMessageDialog(this, "Target price updated successfully!");
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid number.");
+        }
+
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

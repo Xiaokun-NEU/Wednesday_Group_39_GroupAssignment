@@ -20,9 +20,9 @@ public class Product {
     public String getName() {
         return name;
     }
-    private int floorPrice;
-    private int ceilingPrice;
-    private int targetPrice;
+    private double floorPrice;
+    private double ceilingPrice;
+    private double targetPrice;
     private int availability;
     private Supplier supplier;
 
@@ -54,7 +54,7 @@ public class Product {
         targetPrice = tp;
         return this; //returns itself
     }
-    public int getTargetPrice() {return targetPrice;}
+    
     public void addOrderItem(OrderItem oi){     
         orderitems.add(oi);
     }
@@ -86,8 +86,8 @@ public class Product {
     // is $500 above the expected target. If the actual is $1800 then the lose will be $200
     // Add all these difference to get the total including wins and loses
     
-        public int getOrderPricePerformance() {
-        int sum = 0;
+        public double getOrderPricePerformance() {
+        double sum = 0;
         for (OrderItem oi : orderitems) {
             sum = sum + oi.calculatePricePerformance();     //positive and negative values       
         }
@@ -112,15 +112,25 @@ public class Product {
         return supplier;
     }
     
-    @Override
-    public String toString(){
-        return name;
+    public void setFloorPrice(double floorPrice) {
+        this.floorPrice = floorPrice;
     }
-    public int getFloorPrice(){
+    public double getFloorPrice(){
         return floorPrice;
     }
-    public int getCeilingPrice(){
+    public double getCeilingPrice(){
         return ceilingPrice;
     }
 
+    public void setTargetPrice(double targetPrice) {
+        this.targetPrice = targetPrice;
+    }
+    public double getTargetPrice() {return targetPrice;}
+
+    
+    
+    @Override
+        public String toString(){
+            return name;
+    } 
 }

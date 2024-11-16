@@ -5,6 +5,10 @@
 package ui;
 
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import model.ProductManagement.Product;
+import model.ProductManagement.ProductCatalog;
+import model.Supplier.Supplier;
 import model.Supplier.SupplierDirectory;
 
 
@@ -18,12 +22,22 @@ public class reportJPanel extends javax.swing.JPanel {
      * Creates new form reportJPanel
      */
     private final SupplierDirectory supplierDirectory;
+    private final ProductCatalog productCatalog;
     
-    public reportJPanel(JPanel workPanel, SupplierDirectory supplierDirectory) {
-        this.supplierDirectory = supplierDirectory;
+    public reportJPanel(JPanel workPanel) {
+        spList.initializeData();
+        this.supplierDirectory = spList.getSupplierDirectory();
+        this.productCatalog = spList.getProductCatalog();
         initComponents();
+        populateSupplierComboBox();
     }
-
+    
+    private void populateSupplierComboBox() {
+        cmbSupplier.removeAllItems();
+        for (Supplier supplier : supplierDirectory.getSupplierList()) {
+            cmbSupplier.addItem(supplier.getName());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,21 +49,24 @@ public class reportJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tblReport = new javax.swing.JTabbedPane();
+        cmbSupplier = new javax.swing.JComboBox<>();
+        lblSupplier = new javax.swing.JLabel();
+        btnView = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Product ID", "Product Name", "Revenue", "Target Price Before", "Target Price After", "Sales Below Target", "Sales Above Target"
+                "Product Name", "Revenue", "Target Price Before", "Target Price After", "Sales Below Target", "Sales Above Target"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -58,18 +75,40 @@ public class reportJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        cmbSupplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbSupplierActionPerformed(evt);
+            }
+        });
+
+        lblSupplier.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
+        lblSupplier.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblSupplier.setText("Choose Supplier:");
+
+        btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(367, 367, 367)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 933, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnView)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblSupplier)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tblReport, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 933, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -78,15 +117,44 @@ public class reportJPanel extends javax.swing.JPanel {
                 .addGap(42, 42, 42)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tblReport, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblSupplier))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnView)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cmbSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSupplierActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbSupplierActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        String selectedSupplierName = (String) cmbSupplier.getSelectedItem();
+    
+        if (selectedSupplierName != null) {
+            for (Product product : productCatalog.getProductList()) {
+                model.addRow(new Object[]{product.getName(), 0, 0, 0, 0, 0});
+            }
+        }
+    }//GEN-LAST:event_btnViewActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnView;
+    private javax.swing.JComboBox<Object> cmbSupplier;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblSupplier;
+    private javax.swing.JTabbedPane tblReport;
     // End of variables declaration//GEN-END:variables
 }

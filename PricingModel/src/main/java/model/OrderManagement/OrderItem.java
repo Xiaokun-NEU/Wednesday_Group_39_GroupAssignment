@@ -29,14 +29,14 @@ public class OrderItem {
     }
 
 //The following calculates what the price gain would have been if products were sold at target price
-    public int getOrderItemTargetTotal() {
+    public double getOrderItemTargetTotal() {
         return selectedproduct.getTargetPrice() * quantity;
     }
 
     //returns positive if seller is making higher margin than target
     //returns negative if seller is making lower margin than target
     //otherwise zero meaning neutral
-    public int calculatePricePerformance() {
+    public double calculatePricePerformance() {
         return (actualPrice - selectedproduct.getTargetPrice()) * quantity;
     }
 

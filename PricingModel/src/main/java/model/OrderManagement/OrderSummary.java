@@ -12,7 +12,7 @@ package model.OrderManagement;
 public class OrderSummary {
     int salesvolume;
     boolean totalabovetarget;
-    int orderpriceperformance;
+    double orderpriceperformance;
     int numberofOrderitemsabovetarget;
     
 public OrderSummary(Order o){
@@ -22,7 +22,7 @@ public OrderSummary(Order o){
     numberofOrderitemsabovetarget = o.getNumberOfOrderItemsAboveTarget();
 
 }
-public int getOrderProfit(){
+public double getOrderProfit(){
     return orderpriceperformance;
 }
 }

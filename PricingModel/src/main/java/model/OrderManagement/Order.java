@@ -56,8 +56,8 @@ public class Order {
         return sum;
     }
 
-    public int getOrderPricePerformance() {
-        int sum = 0;
+    public double getOrderPricePerformance() {
+        double sum = 0;
         for (OrderItem oi : orderitems) {
             sum = sum + oi.calculatePricePerformance();     //positive and negative values       
         }
@@ -76,7 +76,7 @@ public class Order {
     
     //sum all the item targets and compare to the total of the order 
     public boolean isOrderAboveTotalTarget(){
-        int sum = 0;
+        double sum = 0;
         for (OrderItem oi: orderitems){
             sum = sum + oi.getOrderItemTargetTotal(); //product targets are added
         }
