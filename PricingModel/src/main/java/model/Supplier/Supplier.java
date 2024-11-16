@@ -27,12 +27,15 @@ public class Supplier {
     public Supplier(String n) {
         name = n;
         productcatalog = new ProductCatalog("software");
+        products = new ArrayList<>();
 
     }
 
     public ProductsReport prepareProductsReport() {
 
+        if (productsreport == null) {
         productsreport = productcatalog.generatProductPerformanceReport();
+    }
         return productsreport;
     }
 
@@ -53,17 +56,16 @@ public class Supplier {
         return productcatalog;
     }
     //add supplier product ..
-
-    //update supplier product ...
     public void addProduct(Product product) {
         products.add(product);
+        productcatalog.addProduct(product); // Keep the catalog and list consistent
         product.setSupplier(this); // Set the supplier for the product
     }
 
     public List<Product> getProducts() {
         return products;
     }
-    
+    //update supplier product ...
     @Override
     public String toString() {
         return name;

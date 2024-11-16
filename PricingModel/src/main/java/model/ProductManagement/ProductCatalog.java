@@ -18,7 +18,7 @@ public class ProductCatalog {
 
     public ProductCatalog(String n) {
         type = n;
-         products = new ArrayList();  ///create the list of elements otherwise it is null
+        products = new ArrayList();  ///create the list of elements otherwise it is null
     }
 // new ProductCatalog(); or new ProductCatalog("Printers");
     public ProductCatalog(    ) {

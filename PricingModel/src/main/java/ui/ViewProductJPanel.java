@@ -128,7 +128,12 @@ public class ViewProductJPanel extends javax.swing.JPanel {
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:   
+        
         Supplier selectedSupplier = (Supplier) cmbSupplier.getSelectedItem();
+        if (selectedSupplier == null) {
+        System.out.println("No supplier selected.");
+        return;
+    }
         populateProductTable(selectedSupplier);
     }//GEN-LAST:event_btnViewActionPerformed
 
@@ -141,20 +146,26 @@ public class ViewProductJPanel extends javax.swing.JPanel {
     private javax.swing.JTable tblProduct;
     // End of variables declaration//GEN-END:variables
 
+    
+    
     private void populateProductTable(Supplier supplier) {
         DefaultTableModel model = (DefaultTableModel) tblProduct.getModel();
         model.setRowCount(0);
 
         if (supplier != null && supplier.getProductCatalog() != null) {
-            List<Product> products = supplier.getProductCatalog().getProductList();
-
-            for (Product product : products) {
-                model.addRow(new Object[]{
-                    product.getName(),
-                    product.getFloorPrice(),
-                    product.getTargetPrice()
-                });
-            }
+        List<Product> products = supplier.getProductCatalog().getProductList();
+        if (products.isEmpty()) {
+            System.out.println("No products found for supplier: " + supplier.getName());
         }
+
+        for (Product product : products) {
+            System.out.println("Adding product: " + product.getName()); // Debug log
+            model.addRow(new Object[]{
+                product.getName(),
+                product.getFloorPrice(),
+                product.getTargetPrice()
+            });
+        }
+       }
     }
 }
