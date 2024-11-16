@@ -18,7 +18,7 @@ public class simulationJPanel extends javax.swing.JPanel {
     /**
      * Creates new form simulationJPanel
      */
-    private final SupplierDirectory supplierDirectory;
+    private SupplierDirectory supplierDirectory;
     
     public simulationJPanel(JPanel workPanel) {
         spList.initializeData();
@@ -90,22 +90,51 @@ public class simulationJPanel extends javax.swing.JPanel {
 
     private void btnSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimulationActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tblSimulation.getModel();
-        model.setRowCount(0); 
+        refreshData(); // 确保供应商目录是最新的
 
-        for (Supplier supplier : supplierDirectory.getSupplierList()) {
-            int totalSalesVolume = supplier.calculateTotalSalesVolume();
-            double totalGrossProfit = supplier.calculateTotalGrossProfit();
-            double totalRevenue = supplier.calculateTotalRevenue();
+    DefaultTableModel model = (DefaultTableModel) tblSimulation.getModel();
+    model.setRowCount(0); 
 
-            model.addRow(new Object[]{supplier.getName(), totalSalesVolume, totalGrossProfit, totalRevenue});
-        }
+    for (Supplier supplier : supplierDirectory.getSupplierList()) {
+        int totalSalesVolume = supplier.calculateTotalSalesVolume();
+        double totalGrossProfit = supplier.calculateTotalGrossProfit();
+        double totalRevenue = supplier.calculateTotalRevenue();
+
+        model.addRow(new Object[]{
+            supplier.getName(), 
+            totalSalesVolume, 
+            totalGrossProfit, 
+            totalRevenue
+        });
     }//GEN-LAST:event_btnSimulationActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSimulation;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblSimulation;
     // End of variables declaration//GEN-END:variables
+
+
+    public void refreshData() {
+        DefaultTableModel model = (DefaultTableModel) tblSimulation.getModel();
+        model.setRowCount(0);
+
+        SupplierDirectory updatedSupplierDirectory = spList.getSupplierDirectory();
+        for (Supplier supplier : updatedSupplierDirectory.getSupplierList()) {
+            int totalSalesVolume = supplier.calculateTotalSalesVolume();
+            double totalGrossProfit = supplier.calculateTotalGrossProfit();
+            double totalRevenue = supplier.calculateTotalRevenue();
+
+            model.addRow(new Object[] {
+                supplier.getName(),
+                totalSalesVolume,
+                totalGrossProfit,
+                totalRevenue
+            });
+        }
+    }
+
 }
+
+

@@ -24,9 +24,10 @@ public class spList {
     public static void main(String[] args) {
         initializeData();
     }
-    
+    private static boolean isInitialized = false;
     public static void initializeData() {
-        // Initialize ProductCatalog
+        if (isInitialized) return;
+        isInitialized = true;
         productCatalog = new ProductCatalog();
         Product product1 = productCatalog.newProduct("product1", 50, 30, 40, 10);
         Product product2 = productCatalog.newProduct("product2", 60, 35, 45, 7);
