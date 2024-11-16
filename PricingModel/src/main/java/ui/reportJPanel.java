@@ -34,6 +34,7 @@ public class reportJPanel extends javax.swing.JPanel {
     
     private void populateSupplierComboBox() {
         cmbSupplier.removeAllItems();
+        
         for (Supplier supplier : supplierDirectory.getSupplierList()) {
             cmbSupplier.addItem(supplier.getName());
         }
@@ -48,13 +49,12 @@ public class reportJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        tblReport = new javax.swing.JTabbedPane();
+        tblReport = new javax.swing.JTable();
         cmbSupplier = new javax.swing.JComboBox<>();
         lblSupplier = new javax.swing.JLabel();
         btnView = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblReport.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -62,7 +62,7 @@ public class reportJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Product Name", "Revenue", "Target Price Before", "Target Price After", "Sales Below Target", "Sales Above Target"
+                "Product Name", "Revenue", "Sales", "Target Price", "Caost Price", "Fixed Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -73,7 +73,7 @@ public class reportJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblReport);
 
         cmbSupplier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,15 +99,12 @@ public class reportJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnView)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblSupplier)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tblReport, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnView)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblSupplier)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(cmbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 933, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(119, Short.MAX_VALUE))
         );
@@ -118,14 +115,11 @@ public class reportJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tblReport, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblSupplier))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnView)))
-                .addContainerGap(65, Short.MAX_VALUE))
+                    .addComponent(cmbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSupplier))
+                .addGap(18, 18, 18)
+                .addComponent(btnView)
+                .addContainerGap(100, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -136,16 +130,34 @@ public class reportJPanel extends javax.swing.JPanel {
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
 
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
+       DefaultTableModel model = (DefaultTableModel) tblReport.getModel();
+    model.setRowCount(0); 
 
-        String selectedSupplierName = (String) cmbSupplier.getSelectedItem();
-    
-        if (selectedSupplierName != null) {
-            for (Product product : productCatalog.getProductList()) {
-                model.addRow(new Object[]{product.getName(), 0, 0, 0, 0, 0});
+    String selectedSupplierName = (String) cmbSupplier.getSelectedItem();
+
+    if (selectedSupplierName != null) {
+        Supplier selectedSupplier = null;
+
+        for (Supplier supplier : supplierDirectory.getSupplierList()) {
+            if (supplier.getName().equals(selectedSupplierName)) {
+                selectedSupplier = supplier;
+                break;
             }
         }
+
+        if (selectedSupplier != null) {
+            for (Product product : productCatalog.getProductList()) { 
+                model.addRow(new Object[]{
+                    product.getName(),
+                    product.getRevenue(),      
+                    product.getTargetPriceBefore(),
+                    product.getTargetPriceAfter(),
+                    product.getSalesBelowTarget(),
+                    product.getSalesAboveTarget()
+                });
+            }
+        }
+    }
     }//GEN-LAST:event_btnViewActionPerformed
 
 
@@ -153,8 +165,10 @@ public class reportJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnView;
     private javax.swing.JComboBox<Object> cmbSupplier;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblSupplier;
-    private javax.swing.JTabbedPane tblReport;
+    private javax.swing.JTable tblReport;
     // End of variables declaration//GEN-END:variables
+
+
+
 }
