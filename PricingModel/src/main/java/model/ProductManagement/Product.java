@@ -38,6 +38,15 @@ public class Product {
     private Supplier supplier;
     private double revenue;
     private int quantity;
+    private int frequency;
+
+    public int getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
+    }
 
     public int getQuantity() {
         return quantity;
@@ -71,14 +80,16 @@ public class Product {
         this.initialTargetPrice = targetPrice;
         orderitems = new ArrayList();
     }
-    public Product(String n, int fp, int cp, int tp, int qt) {
+    public Product(String n, int fp, int cp, int tp, int qt, int fs) {
         name = n;
         fixedPrice = fp;
         costPrice = cp;
         targetPrice = tp;
         quantity = qt;
+        frequency = fs;
         this.initialTargetPrice = targetPrice;
         orderitems = new ArrayList();
+        
     }
         public Product updateProduct(int fp, int cp, int tp) {
         fixedPrice = fp;
@@ -158,8 +169,14 @@ public class Product {
     public void setTargetPrice(double targetPrice) {
         this.targetPrice = targetPrice;
     }
-    public double getTargetPrice() {return targetPrice;}
-
+    public double getTargetPrice() {
+        return targetPrice;
+    }
+    
+    public double calculateRevenue(){
+        return this.targetPrice * this.quantity;
+    }
+    
     
     
     @Override

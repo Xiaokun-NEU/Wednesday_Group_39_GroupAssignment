@@ -153,17 +153,18 @@ public class reportJPanel extends javax.swing.JPanel {
 
             for (int i = startIndex; i < endIndex; i++) {
                 Product product = productCatalog.getProductList().get(i);
+                double revenue = product.calculateRevenue();
                 model.addRow(new Object[]{
                     product.getName(),
-                    product.getRevenue(),      
+                    revenue,      
                     product.getInitialTargetPrice(),
                     product.getTargetPrice(),
-                    product.getCostPrice(),
-                    product.getFixedPrice()
-                });
+                    product.getFrequency(),
+                    
+                 });
+             }
             }
         }
-    }
     }//GEN-LAST:event_btnViewActionPerformed
 
 
