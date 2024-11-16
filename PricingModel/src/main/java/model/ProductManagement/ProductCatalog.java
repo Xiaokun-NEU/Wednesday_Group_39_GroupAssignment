@@ -35,8 +35,8 @@ public class ProductCatalog {
         products.add(p);
         return p;
     }
-    public Product newProduct(String n, int fp, int cp, int tp) {
-        Product p = new Product(n,fp, cp, tp);
+    public Product newProduct(String n, int fp, int cp, int tp, int qt) {
+        Product p = new Product(n,fp, cp, tp, qt);
         products.add(p);
         return p;
     }

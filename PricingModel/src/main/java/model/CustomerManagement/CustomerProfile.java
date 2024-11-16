@@ -73,6 +73,5 @@ public class CustomerProfile {
         return person;
     }
         
-        
     
 }
