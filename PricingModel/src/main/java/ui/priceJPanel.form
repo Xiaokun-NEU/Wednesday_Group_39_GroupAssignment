@@ -102,7 +102,7 @@
               <Table columnCount="4" rowCount="4">
                 <Column editable="false" title="Product" type="java.lang.Object"/>
                 <Column editable="false" title="Sales" type="java.lang.Object"/>
-                <Column editable="false" title="Purchase Price" type="java.lang.Object"/>
+                <Column editable="false" title="Cost Price" type="java.lang.Object"/>
                 <Column editable="false" title="Target Price" type="java.lang.Object"/>
               </Table>
             </Property>
