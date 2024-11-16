@@ -22,6 +22,35 @@ public class Supplier {
     String name;
     ProductCatalog productcatalog;
     ProductsReport productsreport;
+    
+    public double calculateTotalRevenue(){
+        double totalRevenue = 0.0;
+        for (Product product : products) {
+        double targetPrice = product.getTargetPrice();
+        int salesVolume = product.getQuantity();
+        double costPrice = product.getCostPrice();
+        totalRevenue += targetPrice * salesVolume - (costPrice * salesVolume);
+    }
+        return totalRevenue;
+    }
+    
+    public double calculateTotalGrossProfit() {
+    double totalGrossProfit = 0.0;
+    for (Product product : products) {
+        double targetPrice = product.getTargetPrice();
+        int salesVolume = product.getQuantity();
+        totalGrossProfit += targetPrice * salesVolume;
+    }
+    return totalGrossProfit;
+}
+    
+    public int calculateTotalSalesVolume() {
+    int totalSalesVolume = 0;
+    for (Product product : products) {
+        totalSalesVolume += product.getQuantity();
+    }
+    return totalSalesVolume;
+}
 
     public int getSales() {
         return sales;

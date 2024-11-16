@@ -94,11 +94,11 @@ public class simulationJPanel extends javax.swing.JPanel {
         model.setRowCount(0); 
 
         for (Supplier supplier : supplierDirectory.getSupplierList()) {
-            int sales = supplier.getSales();
-            double grossProfit = supplier.getGrossProfit();
-            double revenue = supplier.getTotalRevenue();
+            int totalSalesVolume = supplier.calculateTotalSalesVolume();
+            double totalGrossProfit = supplier.calculateTotalGrossProfit();
+            double totalRevenue = supplier.calculateTotalRevenue();
 
-            model.addRow(new Object[]{supplier.getName(), sales, grossProfit, revenue});
+            model.addRow(new Object[]{supplier.getName(), totalSalesVolume, totalGrossProfit, totalRevenue});
         }
     }//GEN-LAST:event_btnSimulationActionPerformed
 
