@@ -144,7 +144,7 @@ public class spList {
         productAndSupplier(product49, supplier5);
         productAndSupplier(product50, supplier5);
 
-        // Initialize PersonDirectory
+        // Add 10 suppliers
         personDirectory = new PersonDirectory();
         personDirectory.newPerson("001");
         personDirectory.newPerson("002");
