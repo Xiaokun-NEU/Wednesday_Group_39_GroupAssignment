@@ -156,7 +156,7 @@ public class reportJPanel extends javax.swing.JPanel {
                 model.addRow(new Object[]{
                     product.getName(),
                     product.getRevenue(),      
-                    product.getAvailability(),
+                    product.getInitialTargetPrice(),
                     product.getTargetPrice(),
                     product.getCostPrice(),
                     product.getFixedPrice()
@@ -176,5 +176,20 @@ public class reportJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
 
+        public void loadReportData() {
+        DefaultTableModel model = (DefaultTableModel) tblReport.getModel();
+        model.setRowCount(0);
+
+        for (Supplier supplier : spList.getSupplierDirectory().getSupplierList()) {
+            for (Product product : supplier.getProductCatalog().getProductList()) {
+                model.addRow(new Object[] {
+                    product.getName(),
+                    product.getInitialTargetPrice(), 
+                    product.getTargetPrice(),        
+                    product.getQuantity()            
+                });
+            }
+        }
+    }
 
 }

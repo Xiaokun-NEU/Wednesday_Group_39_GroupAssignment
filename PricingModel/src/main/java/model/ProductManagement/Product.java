@@ -20,6 +20,17 @@ public class Product {
     public String getName() {
         return name;
     }
+    
+    private double initialTargetPrice;
+
+    public double getInitialTargetPrice() {
+        return initialTargetPrice;
+    }
+
+    public void setInitialTargetPrice(double initialTargetPrice) {
+        this.initialTargetPrice = initialTargetPrice;
+    }
+    
     private double fixedPrice;
     private double costPrice;
     private double targetPrice;
@@ -57,6 +68,7 @@ public class Product {
         fixedPrice = fp;
         costPrice = cp;
         targetPrice = tp;
+        this.initialTargetPrice = targetPrice;
         orderitems = new ArrayList();
     }
     public Product(String n, int fp, int cp, int tp, int qt) {
@@ -65,12 +77,14 @@ public class Product {
         costPrice = cp;
         targetPrice = tp;
         quantity = qt;
+        this.initialTargetPrice = targetPrice;
         orderitems = new ArrayList();
     }
         public Product updateProduct(int fp, int cp, int tp) {
         fixedPrice = fp;
         costPrice = cp;
         targetPrice = tp;
+        this.initialTargetPrice = targetPrice;
         return this; //returns itself
     }
     
