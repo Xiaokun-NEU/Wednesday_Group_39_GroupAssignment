@@ -156,31 +156,34 @@ public class priceJPanel extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         int selectedRow = tblPrice.getSelectedRow();
-            if (selectedRow < 0) {
-                JOptionPane.showMessageDialog(this, "Please select a product to update the target price.");
-                
+        if (selectedRow < 0) {
+                JOptionPane.showMessageDialog(this, "Please select a row to update.");
                 return;
-            }
+        }
 
         try {
-        
             double targetPrice = Double.parseDouble(txtPrice.getText());
 
             Supplier selectedSupplier = (Supplier) cmbSupplier.getSelectedItem();
             Product selectedProduct = selectedSupplier.getProductCatalog().getProductList().get(selectedRow);
+    
+            if (targetPrice < selectedProduct.getCostPrice()) {
+                JOptionPane.showMessageDialog(this, "Target price cannot be lower than the cost price.");
+                return;
+            }
 
             selectedProduct.setTargetPrice(targetPrice);
 
             populateProductTable(selectedSupplier);
 
             txtPrice.setText("");
-        
+
             JOptionPane.showMessageDialog(this, "Target price updated successfully!");
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Please enter a valid number.");
         }
-
+        
     }//GEN-LAST:event_btnSaveActionPerformed
 
 
@@ -204,7 +207,7 @@ public class priceJPanel extends javax.swing.JPanel {
             for (Product product : supplier.getProductCatalog().getProductList()) { 
                 model.addRow(new Object[]{      
                     product.getName(),
-                    product.getAvailability(),
+                    product.getQuantity(),
                     product.getCostPrice(),
                     product.getTargetPrice()    
                 });
